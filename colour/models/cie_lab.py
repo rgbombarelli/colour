@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-CIE Lab Colourspace
-===================
+CIE L*a*b* Colourspace
+======================
 
-Defines the *CIE Lab* colourspace transformations:
+Defines the *CIE L\*a\*b\** colourspace transformations:
 
 -   :func:`XYZ_to_Lab`
 -   :func:`Lab_to_XYZ`
@@ -47,27 +47,29 @@ def XYZ_to_Lab(
         XYZ,
         illuminant=ILLUMINANTS['CIE 1931 2 Degree Standard Observer']['D50']):
     """
-    Converts from *CIE XYZ* tristimulus values to *CIE Lab* colourspace.
+    Converts from *CIE XYZ* tristimulus values to *CIE L\*a\*b\** colourspace.
 
     Parameters
     ----------
     XYZ : array_like
+        metadata : {'type': 'CIE XYZ', 'symbol': 'XYZ', 'extent': (0, 1)}
         *CIE XYZ* tristimulus values.
     illuminant : array_like, optional
+        metadata : {'type': 'CIE xyY', 'symbol': 'xyY', 'extent': (0, 1)}
         Reference *illuminant* *xy* chromaticity coordinates or *CIE xyY*
         colourspace array.
 
     Returns
     -------
     ndarray
-        *CIE Lab* colourspace array.
+        metadata : {'type': 'CIE Lab', 'symbol': 'L*a*b*', 'extent':
+        ((0, 100), (-100, 100), (-100, 100))}
+        *CIE L\*a\*b\** colourspace array.
 
     Notes
     -----
-    -   Input *CIE XYZ* tristimulus values are in domain [0, 1].
-    -   Input *illuminant* *xy* chromaticity coordinates or *CIE xyY*
-        colourspace array are in domain [0, :math:`\infty`].
-    -   Output *Lightness* :math:`L^*` is in range [0, 100].
+    metadata : {'classifier': 'Colour Model Conversion Function',
+        'method_name': 'CIE 1976', 'method_strict_name': 'CIE 1976'}
 
     Examples
     --------
@@ -99,27 +101,29 @@ def Lab_to_XYZ(
         Lab,
         illuminant=ILLUMINANTS['CIE 1931 2 Degree Standard Observer']['D50']):
     """
-    Converts from *CIE Lab* colourspace to *CIE XYZ* tristimulus values.
+    Converts from *CIE L\*a\*b\** colourspace to *CIE XYZ* tristimulus values.
 
     Parameters
     ----------
     Lab : array_like
-        *CIE Lab* colourspace array.
+        metadata : {'type': 'CIE Lab', 'symbol': 'L*a*b*',
+        'extent': ((0, 100), (-100, 100), (-100, 100))}
+        *CIE L\*a\*b\** colourspace array.
     illuminant : array_like, optional
+        metadata : {'type': 'CIE xyY', 'symbol': 'xyY', 'extent': (0, 1)}
         Reference *illuminant* *xy* chromaticity coordinates or *CIE xyY*
         colourspace array.
 
     Returns
     -------
     ndarray
+        metadata : {'type': 'CIE XYZ', 'symbol': 'XYZ', 'extent': (0, 1)}
         *CIE XYZ* tristimulus values.
 
     Notes
     -----
-    -   Input *Lightness* :math:`L^*` is in domain [0, 100].
-    -   Input *illuminant* *xy* chromaticity coordinates or *CIE xyY*
-        colourspace array are in domain [0, :math:`\infty`].
-    -   Output *CIE XYZ* tristimulus values are in range [0, 1].
+    metadata : {'classifier': 'Colour Model Conversion Function',
+        'method_name': 'CIE 1976', 'method_strict_name': 'CIE 1976'}
 
     Examples
     --------
@@ -146,21 +150,26 @@ def Lab_to_XYZ(
 
 def Lab_to_LCHab(Lab):
     """
-    Converts from *CIE Lab* colourspace to *CIE LCHab* colourspace.
+    Converts from *CIE L\*a\*b\** colourspace to *CIE LCH(ab)* colourspace.
 
     Parameters
     ----------
     Lab : array_like
-        *CIE Lab* colourspace array.
+        metadata : {'type': 'CIE Lab', 'symbol': 'L*a*b*', 'extent':
+        ((0, 100), (-100, 100), (-100, 100))}
+        *CIE L\*a\*b\** colourspace array.
 
     Returns
     -------
     ndarray
-        *CIE LCHab* colourspace array.
+        metadata : {'type': 'CIE LCHab', 'symbol': 'LCH(ab)', 'extent':
+        ((0, 100), (0, 360), (0, 360))}
+        *CIE LCH(ab)* colourspace array.
 
     Notes
     -----
-    -   *Lightness* :math:`L^*` is in domain [0, 100].
+    metadata : {'classifier': 'Colour Model Conversion Function',
+        'method_name': 'CIE 1976', 'method_strict_name': 'CIE 1976'}
 
     Examples
     --------
@@ -180,21 +189,26 @@ def Lab_to_LCHab(Lab):
 
 def LCHab_to_Lab(LCHab):
     """
-    Converts from *CIE LCHab* colourspace to *CIE Lab* colourspace.
+    Converts from *CIE LCH(ab)* colourspace to *CIE L\*a\*b\** colourspace.
 
     Parameters
     ----------
     LCHab : array_like
-        *CIE LCHab* colourspace array.
+        metadata : {'type': 'CIE LCHab', 'symbol': 'LCH(ab)', 'extent':
+        ((0, 100), (0, 360), (0, 360))}
+        *CIE LCH(ab)* colourspace array.
 
     Returns
     -------
     ndarray
-        *CIE Lab* colourspace array.
+        metadata : {'type': 'CIE Lab', 'symbol': 'L*a*b*', 'extent':
+        ((0, 100), (-100, 100), (-100, 100))}
+        *CIE L\*a\*b\** colourspace array.
 
     Notes
     -----
-    -   *Lightness* :math:`L^*` is in domain [0, 100].
+    metadata : {'classifier': 'Colour Model Conversion Function',
+        'method_name': 'CIE 1976', 'method_strict_name': 'CIE 1976'}
 
     Examples
     --------

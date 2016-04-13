@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-CIE Luv Colourspace
-===================
+CIE L*u*v* Colourspace
+======================
 
-Defines the *CIE Luv* colourspace transformations:
+Defines the *CIE L\*u\*v\** colourspace transformations:
 
 -   :func:`XYZ_to_Luv`
 -   :func:`Luv_to_XYZ`
@@ -55,27 +55,29 @@ def XYZ_to_Luv(
         XYZ,
         illuminant=ILLUMINANTS['CIE 1931 2 Degree Standard Observer']['D50']):
     """
-    Converts from *CIE XYZ* tristimulus values to *CIE Luv* colourspace.
+    Converts from *CIE XYZ* tristimulus values to *CIE L\*u\*v\** colourspace.
 
     Parameters
     ----------
     XYZ : array_like
+        metadata : {'type': 'CIE XYZ', 'symbol': 'XYZ', 'extent': (0, 1)}
         *CIE XYZ* tristimulus values.
     illuminant : array_like, optional
+        metadata : {'type': 'CIE xyY', 'symbol': 'xyY', 'extent': (0, 1)}
         Reference *illuminant* *xy* chromaticity coordinates or *CIE xyY*
         colourspace array.
 
     Returns
     -------
     ndarray
-        *CIE Luv* colourspace array.
+        metadata : {'type': 'CIE Luv', 'symbol': 'L*u*v*', 'extent':
+        ((0, 100), (-100, 100), (-100, 100))}
+        *CIE L\*u\*v\** colourspace array.
 
     Notes
     -----
-    -   Input *CIE XYZ* tristimulus values are in domain [0, 1].
-    -   Input *illuminant* *xy* chromaticity coordinates or *CIE xyY*
-        colourspace array are in domain [0, :math:`\infty`].
-    -   Output :math:`L^*` is in range [0, 100].
+    metadata : {'classifier': 'Colour Model Conversion Function',
+        'method_name': 'CIE 1976', 'method_strict_name': 'CIE 1976'}
 
     Examples
     --------
@@ -105,27 +107,29 @@ def Luv_to_XYZ(
         Luv,
         illuminant=ILLUMINANTS['CIE 1931 2 Degree Standard Observer']['D50']):
     """
-    Converts from *CIE Luv* colourspace to *CIE XYZ* tristimulus values.
+    Converts from *CIE L\*u\*v\** colourspace to *CIE XYZ* tristimulus values.
 
     Parameters
     ----------
     Luv : array_like
-        *CIE Luv* colourspace array.
+        metadata : {'type': 'CIE Luv', 'symbol': 'L*u*v*', 'extent':
+        ((0, 100), (-100, 100), (-100, 100))}
+        *CIE L\*u\*v\** colourspace array.
     illuminant : array_like, optional
+        metadata : {'type': 'CIE xyY', 'symbol': 'xyY', 'extent': (0, 1)}
         Reference *illuminant* *xy* chromaticity coordinates or *CIE xyY*
         colourspace array.
 
     Returns
     -------
     ndarray
+        metadata : {'type': 'CIE XYZ', 'symbol': 'XYZ', 'extent': (0, 1)}
         *CIE XYZ* tristimulus values.
 
     Notes
     -----
-    -   Input :math:`L^*` is in domain [0, 100].
-    -   Input *illuminant* *xy* chromaticity coordinates or *CIE xyY*
-        colourspace array are in domain [0, :math:`\infty`].
-    -   Output *CIE XYZ* tristimulus values are in range [0, 1].
+    metadata : {'classifier': 'Colour Model Conversion Function',
+        'method_name': 'CIE 1976', 'method_strict_name': 'CIE 1976'}
 
     Examples
     --------
@@ -158,28 +162,30 @@ def Luv_to_uv(
         Luv,
         illuminant=ILLUMINANTS['CIE 1931 2 Degree Standard Observer']['D50']):
     """
-    Returns the :math:`uv^p` chromaticity coordinates from given *CIE Luv*
-    colourspace array.
+    Returns the :math:`u\'v\'` chromaticity coordinates from given
+    *CIE L\*u\*v\** colourspace array.
 
     Parameters
     ----------
     Luv : array_like
-        *CIE Luv* colourspace array.
+        metadata : {'type': 'CIE Luv', 'symbol': 'L*u*v*', 'extent':
+        ((0, 100), (-100, 100), (-100, 100))}
+        *CIE L\*u\*v\** colourspace array.
     illuminant : array_like, optional
+        metadata : {'type': 'CIE xyY', 'symbol': 'xyY', 'extent': (0, 1)}
         Reference *illuminant* *xy* chromaticity coordinates or *CIE xyY*
         colourspace array.
 
     Returns
     -------
     ndarray
-        :math:`uv^p` chromaticity coordinates.
+        metadata : {'type': "CIE u'v'", 'symbol': "u'v'", 'extent': (0, 1)}
+        :math:`u\'v\'` chromaticity coordinates.
 
     Notes
     -----
-    -   Input :math:`L^*` is in domain [0, 100].
-    -   Input *illuminant* *xy* chromaticity coordinates or *CIE xyY*
-        colourspace array are in domain [0, :math:`\infty`].
-    -   Output :math:`uv^p` chromaticity coordinates are in range [0, 1].
+    metadata : {'classifier': 'Colour Model Conversion Function',
+        'method_name': 'CIE 1976', 'method_strict_name': 'CIE 1976'}
 
     Examples
     --------
@@ -197,23 +203,25 @@ def Luv_to_uv(
 
 def Luv_uv_to_xy(uv):
     """
-    Returns the *xy* chromaticity coordinates from given *CIE Luv* colourspace
-    :math:`uv^p` chromaticity coordinates.
+    Returns the *xy* chromaticity coordinates from given *CIE L\*u\*v\**
+    colourspace :math:`u\'v\'` chromaticity coordinates.
 
     Parameters
     ----------
     uv : array_like
-        *CIE Luv u"v"* chromaticity coordinates.
+        metadata : {'type': "CIE u'v'", 'symbol': "u'v'", 'extent': (0, 1)}
+        *CIE L\*u\*v\* u\'v\'* chromaticity coordinates.
 
     Returns
     -------
     ndarray
+        metadata : {'type': 'CIE xy', 'symbol': 'xy', 'extent': (0, 1)}
         *xy* chromaticity coordinates.
 
     Notes
     -----
-    -   Input :math:`uv^p` chromaticity coordinates are in domain [0, 1].
-    -   Output *xy* is in range [0, 1].
+    metadata : {'classifier': 'Colour Model Conversion Function',
+        'method_name': 'CIE 1976', 'method_strict_name': 'CIE 1976'}
 
     References
     ----------
@@ -236,21 +244,26 @@ def Luv_uv_to_xy(uv):
 
 def Luv_to_LCHuv(Luv):
     """
-    Converts from *CIE Luv* colourspace to *CIE LCHuv* colourspace.
+    Converts from *CIE L\*u\*v\** colourspace to *CIE LCH(uv)* colourspace.
 
     Parameters
     ----------
     Luv : array_like
-        *CIE Luv* colourspace array.
+        metadata : {'type': 'CIE Luv', 'symbol': 'L*u*v*', 'extent':
+        ((0, 100), (-100, 100), (-100, 100))}
+        *CIE L\*u\*v\** colourspace array.
 
     Returns
     -------
     ndarray
-        *CIE LCHuv* colourspace array.
+        metadata : {'type': 'CIE LCHuv', 'symbol': 'LCH(uv)', 'extent':
+        ((0, 100), (0, 360), (0, 360))}
+        *CIE LCH(uv)* colourspace array.
 
     Notes
     -----
-    -   Input / output :math:`L^*` is in domain / range [0, 100].
+    metadata : {'classifier': 'Colour Model Conversion Function',
+        'method_name': 'CIE 1976', 'method_strict_name': 'CIE 1976'}
 
     Examples
     --------
@@ -270,21 +283,26 @@ def Luv_to_LCHuv(Luv):
 
 def LCHuv_to_Luv(LCHuv):
     """
-    Converts from *CIE LCHuv* colourspace to *CIE Luv* colourspace.
+    Converts from *CIE LCH(uv)* colourspace to *CIE L\*u\*v\** colourspace.
 
     Parameters
     ----------
     LCHuv : array_like
-        *CIE LCHuv* colourspace array.
+        metadata : {'type': 'CIE LCHuv', 'symbol': 'LCH(uv)', 'extent':
+        ((0, 100), (0, 360), (0, 360))}
+        *CIE LCH(uv)* colourspace array.
 
     Returns
     -------
     ndarray
-        *CIE Luv* colourspace array.
+        metadata : {'type': 'CIE Luv', 'symbol': 'L*u*v*', 'extent':
+        ((0, 100), (-100, 100), (-100, 100))}
+        *CIE L\*u\*v\** colourspace array.
 
     Notes
     -----
-    -   Input / output :math:`L^*` is in domain / range [0, 100].
+    metadata : {'classifier': 'Colour Model Conversion Function',
+        'method_name': 'CIE 1976', 'method_strict_name': 'CIE 1976'}
 
     Examples
     --------
