@@ -14,6 +14,7 @@ from .array import (as_numeric, as_namedtuple, closest, normalise_maximum,
                     linear_conversion)
 from .data_structures import (ArbitraryPrecisionMapping, Lookup, Structure,
                               CaseInsensitiveMapping)
+from .iterators import Peekable
 from .verbose import ColourWarning, message_box, warning, filter_warnings
 
 __all__ = [
@@ -31,4 +32,5 @@ __all__ += [
     'ArbitraryPrecisionMapping', 'Lookup', 'Structure',
     'CaseInsensitiveMapping'
 ]
+__all__ += ['Peekable']
 __all__ += ['ColourWarning', 'message_box', 'warning', 'filter_warnings']
